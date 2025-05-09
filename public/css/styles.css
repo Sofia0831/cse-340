@@ -1,6 +1,282 @@
-/******* Change Box Model ***************/
+****** Change Box Model **************
 *,
 *:before,
 *:after {
   box-sizing: border-box;
 }
+
+:root {
+  --font1: 'Jersey 10', sans-serif;
+  --font2: 'Bebas Neue', sans-serif;
+
+  --primary-color: rgb(55, 81, 55);
+}
+
+#wrapper {
+  padding: 0.2rem;
+  padding-bottom: 0;
+}
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#top-header a {
+   text-decoration: none;
+   color: var(--primary-color);
+ }
+
+.siteName {
+  font-size: 43px;
+  font-family: var(--font1);
+}
+
+#top-header a:hover {
+  color: rgb(98, 127, 87);
+}
+
+#tool {
+  font-family: var(--font2);
+  font-size: 18px;
+}
+
+nav {
+  font-family: var(--font2);
+  font-size: 20px;
+}
+
+nav ul {
+  display: flex;
+  margin: 10px 0;
+  padding: 0;
+}
+
+nav ul li {
+  list-style: none;
+  background-color: rgb(39, 43, 37);
+  color: white;
+  padding: 1rem 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+nav ul li:hover {
+  background-color: rgb(63, 68, 60);
+}
+
+
+h1 {
+  font-family: var(--font1);
+  text-align: left;
+  font-size: 10vw;
+  margin: 1rem 0 5rem 0;
+  color: var(--primary-color);
+}
+
+.banner-img {
+  display: block;
+  width: 95%;
+  margin: 0 auto;
+
+}
+
+.banner {
+  position: relative;
+}
+
+.side {
+  color: rgb(39, 43, 37);
+  padding: 5px 1rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  bottom: 60px;
+}
+
+.side h2 {
+    font-family: var(--font2);
+    font-size: 25px;
+    margin: 2px;
+    padding-bottom: 0;
+}
+
+.side ul {
+  margin: 0;
+  padding: 0;
+}
+
+.side li {
+  list-style: none;
+  font-family: var(--font2);
+}
+
+.side img {
+  display: block;
+  margin: 0 auto;
+  padding: 3px 0;
+}
+
+.upgrades {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.upgrades figure {
+  margin: 5px;
+  background-color: rgb(39, 43, 37);
+}
+
+.upgrades figure img {
+  display: block;
+  margin: 10px auto;
+}
+
+.upgrades figcaption {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.upgrades a {
+  color: white;
+  font-family: var(--font2);
+}
+
+
+.upgrade-info {
+  grid-area: upgrades;
+}
+  
+.upgrade-info h2 {
+    font-family: var(--font1);
+    padding: 0;
+    margin: 2rem 0 0 0;
+    font-size: 30px;
+    color: rgb(39, 43, 37);
+  }
+
+
+.reviews {
+  grid-area: reviews;
+}
+
+.reviews h2 {
+  font-family: var(--font1);
+  padding: 0;
+  margin: 1rem 0 0 0;
+  font-size: 30px;
+  color: var(--primary-color);
+}
+
+.reviews ul {
+  display: block;
+  padding-left: 15px;
+}
+
+
+.reviews p {
+  font-family: var(--font2);
+  font-size: 18px;
+  color: var(--primary-color);
+  margin: 5px;
+}
+
+.car-info {
+  display: grid;
+
+  grid-template-areas: 
+  "reviews"
+  "upgrades"
+  ;
+}
+
+footer {
+  font-family: var(--font2);
+  margin: 0;
+  padding: 0;
+}
+
+footer .copyright {
+  padding: 0;
+  margin: 30px 0 5px 0;
+}
+
+
+@media (min-width: 700px) {
+  body {
+    background-image: url(/images/site/small_check.png);
+    background-size: cover;
+  }
+
+  #wrapper {
+    display: block;
+    margin: 0 auto;
+    width: 750px;
+    background-color: white;
+    padding: 2rem;
+    padding-bottom: 0;
+    border-radius: 10px;
+    border: 7px solid rgb(55, 81, 55);
+  }
+
+  .banner-img {
+    width: 500px;
+    height: 255px;
+  }
+
+  h1 {
+    font-size: 50px;
+  }
+
+  .side {
+    bottom: 100px;
+  }
+  .side h2 {
+    font-size: 35px;
+  }
+  .side li {
+    font-size: 20px;
+  }
+  
+
+  .upgrade-info h2 {
+    font-size: 40px;
+    color: var(--primary-color);
+  }
+  
+
+  
+  .reviews h2 {
+      font-size: 40px;
+      color: rgb(39, 43, 37);
+
+    }
+
+    .reviews li, .reviews p {
+      font-size: 22px;
+      color: rgb(39, 43, 37);
+    }
+  
+
+  .car-info {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    "upgrades reviews"
+    ;
+    grid-gap : 20px;
+    align-items: baseline;
+  }
+
+  footer .copyright {
+    margin: 30px 0 5px -20px;
+  }
+
+  .upgrades figure {
+    background-color: var(--primary-color);
+  }
+
+  .upgrades a:hover {
+    color: rgb(205, 250, 189);
+  }
+  
+}
+
