@@ -1,3 +1,6 @@
+-- Script for database
+-- Assignment 2 Task
+
 CREATE TYPE public.account_type AS ENUM
     ('Client', 'Employee', 'Admin');
 
@@ -56,8 +59,8 @@ VALUES ('Custom'),
 	('Truck'),
 	('Sedan');
 
--- Data for table `inventory`
 
+-- Data for table `inventory`
 INSERT INTO public.inventory (
     inv_make,
     inv_model,
@@ -238,12 +241,12 @@ VALUES   (
     5
   );
 
--- 4
+-- Assignment2 number 4
 UPDATE public.inventory
 SET inv_description = REGEXP_REPLACE(inv_description, 'the small interiors', 'a huge interior')
 WHERE inv_id = 10;
 
--- 6
+-- Assignment2 number 6
 UPDATE public.inventory
 SET inv_image = REGEXP_REPLACE(inv_image, '/images/', '/images/vehicles/'),
 	inv_thumbnail = REGEXP_REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
