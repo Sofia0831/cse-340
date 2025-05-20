@@ -65,6 +65,10 @@ nav ul li:hover {
   background-color: rgb(63, 68, 60);
 }
 
+nav a {
+  text-decoration: none;
+  color: white;
+}
 
 h1 {
   font-family: var(--font1);
