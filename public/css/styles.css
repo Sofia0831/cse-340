@@ -204,6 +204,53 @@ footer .copyright {
   margin: 30px 0 5px 0;
 }
 
+ul#inv-display {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1rem;
+}
+
+#inv-display li {
+  border-radius: 10px;
+  padding: 1rem;
+  list-style: none; 
+  background: gainsboro;;
+}
+
+#inv-display img {
+  margin: 1rem auto;
+  display: block;
+  width: 230px;
+  height: 130px;
+}
+
+.namePrice {
+  text-align: center;
+}
+
+.namePrice h2 {
+  padding: 0;
+  margin: 10px;
+}
+
+.namePrice a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.namePrice a:hover {
+  color: rgb(83, 114, 71);
+  text-decoration: underline;
+}
+
+.namePrice span {
+  font-size: 20px;
+}
+
+.inv-title {
+  margin: 0;
+}
 
 @media (min-width: 700px) {
   body {
@@ -241,13 +288,10 @@ footer .copyright {
     font-size: 20px;
   }
   
-
   .upgrade-info h2 {
     font-size: 40px;
     color: var(--primary-color);
   }
-  
-
   
   .reviews h2 {
       font-size: 40px;
@@ -282,5 +326,8 @@ footer .copyright {
     color: rgb(205, 250, 189);
   }
   
+  ul#inv-display {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
