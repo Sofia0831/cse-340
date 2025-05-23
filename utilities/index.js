@@ -41,7 +41,7 @@ Util.buildClassificationGrid = async function(data){
       grid += '<hr />'
       grid += '<h2>'
       grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
+      + vehicle.inv_make + ' ' + vehicle.inv_model + ' ' + 'details">' 
       + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
       grid += '</h2>'
       grid += '<span>$' 
@@ -55,6 +55,30 @@ Util.buildClassificationGrid = async function(data){
   }
   return grid
 }
+
+/* *************************
+ * Build detail view
+ * ********************** */
+Util.buildDetailView = async function(details){
+  let view = `<div class="detail-container">`
+
+  view += `<div class="detail-img">`
+  view += `<img src="${details.inv_image}" alt=" Image of ${details.inv_make} ${details.inv_model}">`
+  view += `</div>`
+
+  view += `<div class="detail-deets">`
+  view += `<h3>${details.inv_make} ${details.inv_model} Details</h3>`
+  view += `<p><span>Price:</span> $${new Intl.NumberFormat('en-US').format(details.inv_price)}`
+  view += `<p><span>Description:</span> ${details.inv_description}`
+  view += `<p><span>Color:</span> ${details.inv_color}`
+  view += `<p><span>Miles:</span> ${new Intl.NumberFormat('en-US').format(details.inv_miles)}`
+  view += `</div>`
+ 
+  view += `</div>`
+  
+  return view
+}
+
 
 /* ****************************************
  * Middleware For Handling Errors
