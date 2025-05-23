@@ -34,6 +34,9 @@ app.use(static)
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome)) 
 
+//Task 3 Error route
+app.get("/trigger-error", utilities.handleErrors(baseController.triggerError));
+
 //Inventory routes
 app.use("/inv", inventoryRoute)
 
