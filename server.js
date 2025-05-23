@@ -59,11 +59,22 @@ const host = process.env.HOST
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
+
+  let message
+  let errorImage
+
+  if(err.status == 404){ 
+    message = err.message
+    errorImage = '/images/site/404_error.png'
+  } else {
+    message = 'Oh no! There was a crash. Maybe try a different route?'
+    errorImage = '/images/site/500_error.png'
+  }
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,
-    nav
+    nav,
+    errorImage
   })
 })
 
