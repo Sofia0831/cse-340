@@ -27,8 +27,7 @@ invValidate.checkNameData = async (req, res, next) => {
         res.render("inventory/add-classification", {
             errors,
             title: "Add New Classification",
-            nav, 
-            classification_name,
+            nav,
         })
         return
 
