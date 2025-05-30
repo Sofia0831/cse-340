@@ -16,6 +16,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
     title: className + " vehicles",
     nav,
     grid,
+    
   })
 }
 
@@ -33,6 +34,18 @@ invCont.buildByInventoryId = async function (req, res, next) {
     nav,
     view,
   }) 
+}
+
+// WEEK 4 ASSIGNMENT
+invCont.buildManagementView = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  const view = await utilities.getManagement()
+  res.render("./inventory/management", {
+    title: "Management",
+    nav,
+    view,
+  })
+  
 }
 
 module.exports = invCont

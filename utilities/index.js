@@ -80,6 +80,16 @@ Util.buildDetailView = async function(details){
   return view
 }
 
+// Week 4 Assignment Management View
+Util.getManagement = async function () {
+  let view = '<ul>'
+  view += '<li><a href="/inv/add-classification">Add New Classification</a></li>'
+  view += '<li><a href="/inv/add-inventory">Add New Inventory</a></li>'
+  view += '</ul>'
+  
+  return view
+}
+
 
 /* ****************************************
  * Middleware For Handling Errors

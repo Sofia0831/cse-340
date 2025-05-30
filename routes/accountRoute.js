@@ -17,4 +17,15 @@ router.post(
     regValidate.checkRegData,
     utilities.handleErrors(accController.registerAccount));
 
+//Week 4 Team Activity
+// Process the login attempt
+router.post(
+  "/login",
+  regValidate.loginRules(),
+  regValidate.checkLogData,
+  (req, res) => {
+    res.status(200).send('login process')
+  }
+)
+
 module.exports = router

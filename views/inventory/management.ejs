@@ -1,0 +1,11 @@
+<!-- WEEK 4 ASSIGNMENT -->
+<% if (title) { %>
+<h1 class="det-title"><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<%- messages() %>
+
+<%- view %>
+

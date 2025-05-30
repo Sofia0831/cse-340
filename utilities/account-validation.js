@@ -1,6 +1,7 @@
 const utilities = require("./index")
-  const { body, validationResult } = require("express-validator")
-  const validate = {}
+const { body, validationResult } = require("express-validator")
+const validate = {}
+const accModel = require("../models/account-model")
 
 /*  **********************************
 *  Registration Data Validation Rules
@@ -30,7 +31,13 @@ validate.registationRules = () => {
     .notEmpty()
     .isEmail()
     .normalizeEmail() // refer to validator.js docs
-    .withMessage("A valid email is required."),
+    .withMessage("A valid email is required.")
+    .custom(async(account_email) => {
+        const emailExists = await accModel.checkExistingEmail(account_email)
+        if (emailExists) {
+            throw new Error("Email exists. Please log in or use a different email.")
+        }
+    }),
 
     // password is required and must be strong password
     body("account_password")
@@ -62,6 +69,48 @@ validate.checkRegData = async (req, res, next) => {
       nav,
       account_firstname,
       account_lastname,
+      account_email,
+    })
+    return
+  }
+  next()
+}
+
+/* ************************************
+ * Week 4 Team Activity Login Validation
+ * ********************************** */
+validate.loginRules = () => {
+    return [
+        //email
+        body("account_email")
+        .trim()
+        .escape()
+        .notEmpty()
+        .isEmail()
+        .normalizeEmail() // refer to validator.js docs
+        .custom(async(account_email) => {
+            const emailExists = await accModel.checkExistingEmail(account_email)
+            if (!emailExists) {
+                throw new Error("Email does not exist.")
+         }
+    }),
+
+    ]
+}
+
+/* *******************************
+ * Check data and return errors
+ * **************************** */
+validate.checkLogData = async (req, res, next) => {
+  const { account_email } = req.body
+  let errors = []
+  errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    res.render("account/login", {
+      errors,
+      title: "Login",
+      nav,
       account_email,
     })
     return

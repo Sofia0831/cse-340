@@ -16,15 +16,15 @@
 <div class="formDiv">
     <form id="registerForm" action="/account/register" method="post">
         <label for="firstname">First Name
-            <input type="text" id="firstname" name="account_firstname" title="Your First Name" required>
+            <input type="text" id="firstname" name="account_firstname" title="Your First Name" required value="<%= locals.account_firstname %>">
         </label>
 
         <label for="lastname">Last Name
-            <input type="text" id="lastname" name="account_lastname" title="Your Last Name" required>
+            <input type="text" id="lastname" name="account_lastname" title="Your Last Name" required value="<%= locals.account_lastname %>">
         </label>
 
         <label for="email">Email
-            <input type="email" id="email" name="account_email" title="Your Email" autocomplete="email" placeholder="name@domain.com" required>
+            <input type="email" id="email" name="account_email" title="Your Email" autocomplete="email" placeholder="name@domain.com" required value="<%= locals.account_email %>">
         </label>
 
         <label for="password">Password
