@@ -24,4 +24,13 @@ router.post(
 
 )
 
+// week 4 Task 3
+router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventoryView));
+router.post(
+    "/add-inventory", 
+    invValidate.inventoryRules(),
+    invValidate.checkInvData,
+    utilities.handleErrors(invController.addInventory)
+)
+
 module.exports = router

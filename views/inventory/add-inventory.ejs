@@ -1,0 +1,64 @@
+<% if (title) { %>
+<h1 class="det-title"><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<div class="formDiv">
+    <form id="addForm" method="post">
+        <h3>All fields are required</h3>
+        <fieldset>
+            <label for="classification">Classification
+                <%- classList %>
+            </label>
+
+            <label for="make">Make
+                <input type="text" name="inv_make" id="make" title="The Make of the Car" required value="<%- locals.inv_make %>">
+            </label>
+
+            <label for="model">Model
+                <input type="text" name="inv_model" id="model" title="The Model of the Car" required value="<%- locals.inv_model %>">
+            </label>
+
+            <label for="desc">Description
+                <textarea rows="4" name="inv_description" id="desc" title="Description of the Car" required><%- locals.inv_description %></textarea>
+            </label>
+
+            <label for="img-image">Image Path
+                <input type="text" name="inv_image" id="img-image" title="Image Path of the Car" required value="<%- locals.inv_image %>">
+            </label>
+
+            <label for="tn-path">Thumbnail Path
+                <input type="text" name="inv_thumbnail" id="tn-path" title="Thumbnail Path of Car" required value="<%- locals.inv_thumbnail %>">
+            </label>
+
+            <label for="price">Price
+                <input type="number" name="inv_price" id="price" title="Price of Car" required value="<%- locals.inv_price %>" placeholder="decimal or integer" pattern="^\d{9}$">
+            </label>
+
+            <label for="year">Year
+                <input type="number" name="inv_year" id="year" title="Price of Car" required value="<%- locals.inv_year %>" placeholder="4-digit-year" pattern="^\d{4}$">
+            </label>
+
+            <label for="miles">Miles
+                <input type="number" name="inv_miles" id="miles" title="Miles of Car" required value="<%- locals.inv_miles %>" placeholder="digits only">
+            </label>
+
+            <label for="color">Color
+                <input type="text" name="inv_color" id="color" title="Color of Car" value="<%- locals.inv_color %>">
+            </label>
+
+            <button type="submit">Add to Inventory</button>
+
+        </fieldset>
+    </form>
+</div>
