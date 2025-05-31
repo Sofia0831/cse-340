@@ -39,6 +39,10 @@ invValidate.checkNameData = async (req, res, next) => {
 // Add Inventory Validation
 invValidate.inventoryRules = () => {
     return [
+        body("classification_id")
+        .notEmpty()
+        .withMessage("Classification is required"),
+
         body("inv_make")
         .trim()
         .escape()
@@ -79,9 +83,8 @@ invValidate.inventoryRules = () => {
             min: 3,
             max: 9
         })
-        .withMessage("Price is required")
         .isNumeric()
-        .withMessage("decimal or integer"),
+        .withMessage("Price is required"),
 
         body("inv_year")
         .trim()
@@ -95,9 +98,8 @@ invValidate.inventoryRules = () => {
         .trim()
         .escape()
         .notEmpty()
-        .withMessage("Miles is required")
-        .isNumeric()
-        .withMessage("Digits only"),
+        .isNumeric().withMessage("Digits only")
+        .withMessage("Miles is required"),
 
         body("inv_color")
         .trim()
@@ -109,8 +111,8 @@ invValidate.inventoryRules = () => {
     ]
 }
 
-invValidate.checkInvData = async (req, res, next, classification_id) => {
-    const {inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color} = req.body
+invValidate.checkInvData = async (req, res, next) => {
+    const {classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color} = req.body
 
     let errors = []
     errors = validationResult(req)
@@ -133,7 +135,9 @@ invValidate.checkInvData = async (req, res, next, classification_id) => {
             inv_miles,
             inv_color
         })
+        return
     }
+    next()
 }
 
 module.exports = invValidate

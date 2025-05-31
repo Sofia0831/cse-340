@@ -320,6 +320,11 @@ ul#inv-display {
   opacity: 0.5;
 }
 
+.notice {
+  font-family: var(--font3);
+  color: rgb(163, 11, 8);
+}
+
 
 /* FORM */
 
@@ -328,20 +333,25 @@ ul#inv-display {
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 1rem;
-  background-color: rgb(207, 231, 192);
+  background-color: rgb(232, 232, 232);
   max-width: 400px;    
 }
 
 label {
+  color: var(--primary-color);
   font-size: 5vw;
   display: block;
   padding-top: .2rem;
   font-family: var(--font2);
+  margin: 20px 0 20px 0;
+}
+
+label[for="password"] {
+  margin-bottom: 5px;
 }
 
 input {
   display: block;
-  margin: .1rem 0 0.3rem 0 ;
   padding: .5rem;
   border: 1px solid #999;
   border-radius: 4px;
@@ -352,6 +362,24 @@ input {
   width: 91%;
   font-size: 18px;
 }
+
+select {
+  display: block;
+  padding: .5rem;
+  border: 1px solid #999;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #3D405B;
+  width: 99%;
+  font-size: 18px;
+}
+
+textarea {
+  display: block;
+  width: 97%;
+  font-size: 18px;
+}
+
 input:required {border-left-color: #cc5960;}
 input:focus {border-left-color: black; outline:none;}
 input:required:valid{border-left-color: green;}
@@ -370,8 +398,8 @@ input:required:valid{border-left-color: green;}
 button {
   margin-top: 20px;
   width: 100%;
-  padding: 0.7rem;
-  font-size: 25px;
+  padding: 0.5rem;
+  font-size: 23px;
   background-color: var(--primary-color);
   color: white;
   font-family: var(--font2);
