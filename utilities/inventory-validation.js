@@ -67,13 +67,13 @@ invValidate.inventoryRules = () => {
         .trim()
         .notEmpty()
         .isLength({min: 1})
-        .withMessage("Image Path is required"),
+        .withMessage("Image path is required"),
 
         body("inv_thumbnail")
         .trim()
         .notEmpty()
         .isLength({min : 1})
-        .withMessage("Image Thumbnal is required"),
+        .withMessage("Image thumbnail is required"),
 
         body("inv_price")
         .trim()
