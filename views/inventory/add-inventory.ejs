@@ -17,7 +17,7 @@
     <form id="addForm" method="post">
         <h3>All fields are required</h3>
         <fieldset>
-            <label for="classification">Classification
+            <label for="classList">Classification
                 <%- classList %>
             </label>
 
@@ -42,11 +42,11 @@
             </label>
 
             <label for="price">Price
-                <input type="number" name="inv_price" id="price" title="Price of Car" required value="<%- locals.inv_price %>" placeholder="decimal or integer" pattern="^\d{9}$">
+                <input type="number" name="inv_price" id="price" title="Price of Car" required value="<%- locals.inv_price %>" placeholder="decimal or integer">
             </label>
 
             <label for="year">Year
-                <input type="number" name="inv_year" id="year" title="Price of Car" required value="<%- locals.inv_year %>" placeholder="4-digit-year" pattern="^\d{4}$">
+                <input type="number" name="inv_year" id="year" title="Price of Car" required value="<%- locals.inv_year %>" placeholder="4-digit-year">
             </label>
 
             <label for="miles">Miles
