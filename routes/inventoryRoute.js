@@ -34,6 +34,16 @@ router.post(
 )
 
 //Week 5 Learning Activity
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get(
+    "/getInventory/:classification_id", 
+    utilities.handleErrors(invController.getInventoryJSON))
+
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView))
+
+router.post(
+    "/edit-inventory/",
+    invValidate.inventoryRules(),
+    invValidate.checkUpdateData,
+    utilities.handleErrors(invController.updateInventory))
 
 module.exports = router
