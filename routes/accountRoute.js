@@ -10,6 +10,13 @@ router.get("/login", utilities.handleErrors(accController.buildLogin));
 //Route to Registration
 router.get("/register", utilities.handleErrors(accController.buildRegister));
 
+// Week 5 Learning Activity
+// Route to Successful Login
+router.get(
+  "/",
+  utilities.checkLogin, 
+  utilities.handleErrors(accController.buildAccManagement));
+
 //Registration 
 router.post(
     "/register", 
@@ -19,13 +26,21 @@ router.post(
 
 //Week 4 Team Activity
 // Process the login attempt
+// router.post(
+//   "/login",
+//   regValidate.loginRules(),
+//   regValidate.checkLogData,
+//   (req, res) => {
+//     res.status(200).send('login process')
+//   }
+// )
+
+//Week 5 Learning Activity
 router.post(
-  "/login",
+  "/login", 
   regValidate.loginRules(),
   regValidate.checkLogData,
-  (req, res) => {
-    res.status(200).send('login process')
-  }
-)
+  utilities.handleErrors(accController.accountLogin)
+);
 
 module.exports = router

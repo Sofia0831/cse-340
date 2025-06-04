@@ -89,7 +89,7 @@ validate.loginRules = () => {
         .isEmail()
         .normalizeEmail() // refer to validator.js docs
         .custom(async(account_email) => {
-            const emailExists = await accModel.checkExistingEmail(account_email)
+            const emailExists = await accModel.getAccountByEmail(account_email)
             if (!emailExists) {
                 throw new Error("Email does not exist.")
          }
