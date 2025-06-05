@@ -46,4 +46,11 @@ router.post(
     invValidate.checkUpdateData,
     utilities.handleErrors(invController.updateInventory))
 
+// Week 5 Team Activity
+router.get(
+    "/delete/:inv_id", utilities.handleErrors(invController.deleteView))
+
+router.post(
+    "/delete-confirm/", utilities.handleErrors(invController.deleteInventory))
+
 module.exports = router
