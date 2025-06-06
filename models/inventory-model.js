@@ -115,6 +115,5 @@ async function deleteInventoryItem (inv_id) {
     new Error("Delete Inventory Error")
   }
 }
-
 module.exports = {getClassifications, getInventoryByClassificationId, getDetails, addClassification, addInventory, updateInventory, deleteInventoryItem}
 

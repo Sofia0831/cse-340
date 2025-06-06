@@ -43,7 +43,7 @@ async function registerAccount(req, res) {
         hashedPassword = await bcrypt.hashSync(account_password, 10)
     } catch (error) {
         req.flash("notice", "Sorry, there was an error processing the registration.")
-        res.status(500).render("/account/register", {
+        res.status(500).render("account/register", {
             title: "Register",
             nav,
             errors: null,
@@ -130,5 +130,100 @@ async function buildAccManagement(req, res, next) {
     
 }
 
+// Week 5 assignment
+async function buildUpdateView(req, res, next) {
+    let nav = await utilities.getNav()
+    const accountData = await accModel.getAccountInfo(req.params.accountId)
+    const {account_id, account_firstname, account_lastname, account_email} = accountData;
+    res.render("account/update", {
+        title: "Update Information",
+        nav,
+        errors: null,
+        account_id,
+        account_firstname,
+        account_lastname,
+        account_email,
+    })   
+}
 
-module.exports = {buildLogin, buildRegister, registerAccount, accountLogin, buildAccManagement}
+/* ***************************
+ *  Update Account Info 
+ * ************************** */
+async function updateAccount(req, res) {
+    let nav = await utilities.getNav()
+    const {
+        account_id,
+        account_firstname,
+        account_lastname,
+        account_email,
+    } = req.body
+    
+    const updateResult = await accModel.updateAccount(
+        account_id, 
+        account_firstname,
+        account_lastname,
+        account_email,
+    )
+
+    if (updateResult) {
+        const itemName = updateResult.account_firstname + " " + updateResult.account_lastname
+        req.flash("notice", `Nice! ${itemName} your account information was successfully updated.`)
+        
+        const updatedAccountData = updateResult;
+        if (updatedAccountData && updatedAccountData.account_type) {
+            delete updatedAccountData.account_password
+            utilities.updateCookie(updatedAccountData, res);
+        }
+        res.locals.accountData = updatedAccountData;
+        res.redirect("/account/")
+    } else {
+        req.flash("notice", "Sorry the update failed.")
+        res.status(501).render("account/update", {
+            title: "Update Information",
+            nav,
+            account_id,
+            account_firstname,
+            account_lastname,
+            account_email,
+            errors: null,
+        })
+    }
+}
+
+// Password Change
+async function changePass(req, res, next) {
+    let nav = await utilities.getNav()
+    const { account_id, account_password } = req.body
+
+    let hashedPassword 
+    try {
+        hashedPassword = await bcrypt.hashSync(account_password, 10)
+    } catch (error) {
+        req.flash("notice", "Sorry, there was an error processing the change.")
+        res.status(500).render("account/update", {
+            title: "Update Information",
+            nav,
+            errors: null,
+            account_id,
+        })
+    }
+
+    const updateResult = await accModel.updatePassword(account_id, hashedPassword)
+
+    if (updateResult) {
+        req.flash("notice", `Password updated successfully`)
+        res.redirect("/account/")
+        
+    } else {
+        req.flash("notice", "Sorry, the registration failed.")
+        res.status(501).render("account/update", {
+            title: "Update Information",
+            nav,
+            errors: null, 
+            account_id
+        })
+    }
+}
+
+
+module.exports = {buildLogin, buildRegister, registerAccount, accountLogin, buildAccManagement, buildUpdateView, updateAccount, changePass}
