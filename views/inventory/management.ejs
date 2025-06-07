@@ -7,12 +7,14 @@
 
 <%- messages() %>
 
-<div class="manageDiv"><%- view %></div>
+<div class="manageDiv">
+  <%- view %>
 
-<h2>Manage Inventory</h2>
-<p>Select a Classification to see which classification items belong to</p>
-<%- classificationSelect %>
-<table id="inventoryDisplay"></table>
+  <h2>Manage Inventory</h2>
+  <p>Select a Classification to see which classification items belong to</p>
+  <%- classificationSelect %>
+  <table id="inventoryDisplay"></table>
+</div>
 
 <noscript>JavaScript must be enabled to use this page</noscript>
 
