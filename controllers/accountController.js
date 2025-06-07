@@ -119,6 +119,7 @@ async function accountLogin(req, res) {
     
 }
 
+
 // Successful log in view
 async function buildAccManagement(req, res, next) {
     let nav = await utilities.getNav()
@@ -225,5 +226,14 @@ async function changePass(req, res, next) {
     }
 }
 
+// Logout
+async function accountLogout(req, res) {
+    res.clearCookie("jwt")
+    delete res.locals.accountData
+    res.locals.loggedin = false
+    req.flash("notice", "Logged out successfully")
+    res.redirect("/")
+}
 
-module.exports = {buildLogin, buildRegister, registerAccount, accountLogin, buildAccManagement, buildUpdateView, updateAccount, changePass}
+
+module.exports = {buildLogin, buildRegister, registerAccount, accountLogin, buildAccManagement, buildUpdateView, updateAccount, changePass, accountLogout}
