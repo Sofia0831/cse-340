@@ -2,6 +2,7 @@ const express = require("express")
 const router = new express.Router()
 const utilities = require("../utilities")
 const accController = require("../controllers/accountController")
+const wishController = require("../controllers/wishlistController")
 const regValidate = require('../utilities/account-validation')
 
 //Route to My Account login
@@ -48,5 +49,25 @@ router.post(
   regValidate.passwordRules(),
   regValidate.checkUpdateData,
   utilities.handleErrors(accController.changePass))
+
+
+// Week 6 assignment wishlist
+router.get(
+  "/wishlist/:accountId",
+  utilities.checkLogin,
+  utilities.handleErrors(wishController.buildWishlistView)
+)
+
+router.post(
+  "/wishlist/add",
+  utilities.checkLogin,
+  utilities.handleErrors(wishController.processAddtoWishlist)
+);
+
+router.post(
+  "/wishlist/remove",
+  utilities.checkLogin,
+  utilities.handleErrors(wishController.processRemoveFromWishlist)
+);
 
 module.exports = router

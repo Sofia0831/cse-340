@@ -1,5 +1,6 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
+const wishModel = require("../models/wishlist-model")
 
 const invCont = {}
 
@@ -16,6 +17,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
     title: className + " vehicles",
     nav,
     grid,
+    errors: null,
     
   })
 }
@@ -28,11 +30,21 @@ invCont.buildByInventoryId = async function (req, res, next) {
   const data = await invModel.getDetails(inventory_id)
   const view = await utilities.buildDetailView(data)
   let nav = await utilities.getNav()
+  
+  let isInWishlist = false
+  if (res.locals.accountData && res.locals.accountData.account_id) {
+      const account_id = res.locals.accountData.account_id;
+      isInWishlist = await wishModel.checkIfWishlist(account_id, inventory_id);
+  }
+
   const className = `${data.inv_year} ${data.inv_make} ${data.inv_model}`
   res.render("./inventory/details", {
     title: className,
     nav,
     view,
+    isInWishlist,
+    data,
+    errors: null,
   }) 
 }
 
@@ -47,6 +59,7 @@ invCont.buildManagementView = async function (req, res, next) {
     nav,
     view,
     classificationSelect,
+    errors: null,
   })
   
 }

@@ -526,6 +526,25 @@ button {
   background-color: white;
 }
 
+/* WISHLIST */
+
+.wishlist-item-card {
+  border: 1px solid;
+  padding: 1rem;
+  margin-bottom: 10px;
+}
+
+.name-img h2 {
+  margin: 0;
+  font-family: var(--font2);
+}
+
+.wishlist-details {
+  grid-area: details;
+  font-family: var(--font3);
+}
+
+
 @media (min-width: 700px) {
   body {
     background-image: url(/images/site/small_check.png);
@@ -649,5 +668,26 @@ button {
   input {
     width: 93%;
   }
+
+  .wishlist-item-card {
+    display: grid;
+    grid-template-areas: "name details";
+    grid-template-columns: 1.5fr 2fr;
+  }
+
+  .name-img {
+    grid-area: name;
+    margin: 0;
+    padding: 0;
+  }
+
+  .name-img img {
+    width: 80%;
+  }
+
+  .wishlist-details {
+    padding: 0 1rem
+  }
+
 }
 

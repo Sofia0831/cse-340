@@ -1,0 +1,44 @@
+<% if (title) { %>
+<h1 class="det-title"><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<%- messages() %>
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<div class="wishlist-content">
+  <% if (wishlistItems && wishlistItems.length > 0) { %>
+      <p>Here are the vehicles in your wishlist:</p>
+      <div class="wishlist-grid">
+        <% wishlistItems.forEach(item => { %>
+          <div class="wishlist-item-card">
+            <div class="name-img">
+              <h2><%= item.inv_year %> <%= item.inv_make %> <%= item.inv_model %></h2>
+              <img src="<%= item.inv_thumbnail %>" alt="Image of <%= item.inv_make %> <%= item.inv_model %> thumbnail">
+            </div>
+            <div class="wishlist-details">
+              <p>Price: $<%= new Intl.NumberFormat('en-US').format(item.inv_price) %></p>
+              <p>Added: <%= new Date(item.date_added).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) %></p>
+              <p><a href="/inv/detail/<%= item.inv_id %>" title="View details for <%= item.inv_make %> <%= item.inv_model %>">View Details</a></p>
+
+              <div class="wishlist-actions">
+                <form action="/account/wishlist/remove" method="POST" id="removeFromWishlistForm_<%= item.wishlist_id %>">
+                    <input type="hidden" name="inv_id" value="<%= item.inv_id %>">
+                    <button type="submit" class="link-button remove-button">Remove from Wishlist</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+  <% } else { %>
+      <p>Your wishlist is currently empty. Start browsing our vehicles to add your favorites!</p>
+  <% } %>
+</div>
