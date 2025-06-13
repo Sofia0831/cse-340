@@ -75,6 +75,7 @@ Util.buildDetailView = async function(details){
   view += `<p><span>Description:</span> ${details.inv_description}`
   view += `<p><span>Color:</span> ${details.inv_color}`
   view += `<p><span>Miles:</span> ${new Intl.NumberFormat('en-US').format(details.inv_miles)}`
+  view += `<p><span>Status:</span> ${details.inv_status}` //enhancement for view week 6
   view += `</div>`
  
   view += `</div>`

@@ -65,6 +65,8 @@ async function addInventory(classification_id, inv_make, inv_model, inv_descript
   
 }
 
+
+// Add week 6 enhancement for status
 /* ***************************
  *  Update Inventory Data
  * ************************** */
@@ -79,11 +81,12 @@ async function updateInventory(
   inv_year,
   inv_miles,
   inv_color,
+  inv_status,
   classification_id
 ) {
   try {
     const sql =
-      "UPDATE public.inventory SET inv_make = $1, inv_model = $2, inv_description = $3, inv_image = $4, inv_thumbnail = $5, inv_price = $6, inv_year = $7, inv_miles = $8, inv_color = $9, classification_id = $10 WHERE inv_id = $11 RETURNING *"
+      "UPDATE public.inventory SET inv_make = $1, inv_model = $2, inv_description = $3, inv_image = $4, inv_thumbnail = $5, inv_price = $6, inv_year = $7, inv_miles = $8, inv_color = $9, inv_status = $10, classification_id = $11 WHERE inv_id = $12 RETURNING *"
     const data = await pool.query(sql, [
       inv_make,
       inv_model,
@@ -94,6 +97,7 @@ async function updateInventory(
       inv_year,
       inv_miles,
       inv_color,
+      inv_status,
       classification_id,
       inv_id
     ])

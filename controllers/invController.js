@@ -127,6 +127,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
   }
 }
 
+// WEEK 6 ENHANCEMENT 
 // Get inv details
 /* ***************************
  *  Build edit inventory view
@@ -152,6 +153,7 @@ invCont.editInventoryView = async function (req, res, next) {
     inv_price: itemData.inv_price,
     inv_miles: itemData.inv_miles,
     inv_color: itemData.inv_color,
+    inv_status: itemData.inv_status, //week 6 modification
     classification_id: itemData.classification_id
   })
 }
@@ -172,6 +174,7 @@ invCont.updateInventory = async function (req, res, next) {
     inv_year,
     inv_miles,
     inv_color,
+    inv_status, //enhancement
     classification_id,
   } = req.body
   const updateResult = await invModel.updateInventory(
@@ -185,6 +188,7 @@ invCont.updateInventory = async function (req, res, next) {
     inv_year,
     inv_miles,
     inv_color,
+    inv_status, //enhancement
     classification_id
   )
 
@@ -211,6 +215,7 @@ invCont.updateInventory = async function (req, res, next) {
     inv_price,
     inv_miles,
     inv_color,
+    inv_status, //enhancement
     classification_id
     })
   }
