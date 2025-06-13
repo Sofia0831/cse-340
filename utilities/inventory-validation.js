@@ -36,6 +36,7 @@ invValidate.checkNameData = async (req, res, next) => {
     next()
 }
 
+//week 6 update
 // Add Inventory Validation
 invValidate.inventoryRules = () => {
     return [
@@ -108,11 +109,17 @@ invValidate.inventoryRules = () => {
         .isLength({min: 1})
         .withMessage("Color is required"),
 
+        body("inv_status")
+        .trim()
+        .escape()
+        .notEmpty()
+        .withMessage("Status required")
+
     ]
 }
 
 invValidate.checkInvData = async (req, res, next) => {
-    const {classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color} = req.body
+    const {classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, inv_status} = req.body
 
     let errors = []
     errors = validationResult(req)
@@ -133,16 +140,18 @@ invValidate.checkInvData = async (req, res, next) => {
             inv_price,
             inv_year,
             inv_miles,
-            inv_color
+            inv_color,
+            inv_status
         })
         return
     }
     next()
 }
 
+//week 6 update
 // Week 5 Learning Activity
 invValidate.checkUpdateData = async (req, res, next) => {
-    const {classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, inv_id} = req.body
+    const {classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, inv_status, inv_id} = req.body
      const itemData = await invModel.getDetails(inv_id)
     const itemName = `${itemData.inv_make} ${itemData.inv_model}`
     let errors = []
@@ -165,6 +174,7 @@ invValidate.checkUpdateData = async (req, res, next) => {
             inv_year,
             inv_miles,
             inv_color,
+            inv_status,
             inv_id,
         })
         return
