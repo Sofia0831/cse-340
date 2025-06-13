@@ -544,6 +544,9 @@ button {
   font-family: var(--font3);
 }
 
+.wishlist-content p {
+  font-family:  var(--font3);
+}
 
 @media (min-width: 700px) {
   body {
@@ -688,6 +691,10 @@ button {
   .wishlist-details {
     padding: 0 1rem
   }
+
+  .wishlist-content p {
+    font-size: 17px;
+}
 
 }
 

@@ -16,7 +16,7 @@
 <%- view %>
 
 <div class="wishlist-section">
-    <% if (locals.loggedin && !isInWishlist) { %>
+    <% if (locals.loggedin && !isInWishlist && locals.accountData.account_type == "Client") { %>
         <form action="/account/wishlist/add" method="POST" id="addToWishlistForm">
             <input type="hidden" name="inv_id" value="<%= data.inv_id %>">
             <button type="submit" class="link-button">Add to Wishlist</button>
